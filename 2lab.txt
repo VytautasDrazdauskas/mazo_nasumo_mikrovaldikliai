@@ -1,0 +1,45 @@
+N=1000000;
+n=randn(1,N);
+v=mean(n);
+s=std(n); %rodo rezultatø pasiskirtymà. Jeigu pakelsime tvadratu, gausime signalo energijà
+f=fft(n);
+gf=abs(f).^2; %abs - modulis
+a0=0.12;
+a1=0.78;
+a2=0.1;
+y=zeros(1,length(n)-2);
+for i=1:length(n)-2
+    y(i)=a0*n(i)+a1*n(i+1)+a2*n(i+2);
+end
+fy=fft(y);
+gfy=abs(fy).^2;
+n1=n(1:end-2);
+t=1:1:length(n1);
+plot(t,n1,t,y)
+
+------------------------------------------------------------------------------------------------------
+
+N=10;
+n=randn(1,N);
+v=mean(n);
+Vh=zeros(1,1000)
+Sh=zeros(1,1000)
+s=std(n); %rodo rezultatø pasiskirtymà. Jeigu pakelsime tvadratu, gausime signalo energijà
+f=fft(n);
+gf=abs(f).^2; %abs - modulis
+a0=0.12;
+a1=0.78;
+a2=0.1;
+y=zeros(1,length(n)-2);
+for i=1:length(n)-2
+    for j=1:1000
+    y(i)=a0*n(i)+a1*n(i+1)+a2*n(i+2);
+    end
+   end
+vh(j)=mean(y);
+sh(j)=std(y);
+fy=fft(y);
+gfy=abs(fy).^2;
+n1=n(1:end-2);
+t=1:1:length(n1);
+
